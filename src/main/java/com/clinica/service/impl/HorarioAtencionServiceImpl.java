@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.clinica.model.entity.HorarioAtencion;
 import com.clinica.model.repository.HorarioAtencionRepository;
 import com.clinica.service.HorarioAtencionService;
 
+@Service
 public class HorarioAtencionServiceImpl implements HorarioAtencionService{
 
 	@Autowired

@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.clinica.model.entity.ResultadoLaboratorio;
 import com.clinica.model.repository.ResultadoLaboratorioRepository;
 import com.clinica.service.ResultadoLaboratorioService;
 
+@Service
 public class ResultadoLaboratorioServiceImpl implements ResultadoLaboratorioService{
 
 	@Autowired

@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.clinica.model.entity.Proveedor;
 import com.clinica.model.repository.ProveedorRepository;
 import com.clinica.service.ProveedorService;
 
+@Service
 public class ProveedorServiceImpl implements ProveedorService {
 	@Autowired
 	private ProveedorRepository proveedorRepository;
