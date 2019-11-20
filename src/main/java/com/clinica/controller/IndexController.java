@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clinica.model.entity.Usuario;
+import com.clinica.model.repository.UsuarioRepository;
 import com.clinica.service.UsuarioService;
 
 @Controller
@@ -19,6 +20,9 @@ public class IndexController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
 	public String index() {
@@ -31,18 +35,18 @@ public class IndexController {
 	}
 	
 	@GetMapping("verid")
-	public String verId(Model model) {
+	public String verId(Model model) throws Exception {
 		// Obtener el username
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
-		
-		try {
 			Optional<Usuario> optional 
-				= usuarioService.findByUsername(username);
+				= usuarioRepository.findByUsername(username);
 			if(optional.isPresent()) {
 				model.addAttribute("usuario", optional.get());
 			}
-		}catch(Exception e) {}
+			else {System.out.println("No se encontró el usuario");}
+			
+		
 		
 		return "verid";
 	}
