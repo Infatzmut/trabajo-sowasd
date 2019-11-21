@@ -19,9 +19,6 @@ import com.clinica.service.UsuarioService;
 public class IndexController {
 
 	@Autowired
-	private UsuarioService usuarioService;
-	
-	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
@@ -44,10 +41,7 @@ public class IndexController {
 			if(optional.isPresent()) {
 				model.addAttribute("usuario", optional.get());
 			}
-			else {System.out.println("No se encontró el usuario");}
 			
-		
-		
 		return "verid";
 	}
 }
