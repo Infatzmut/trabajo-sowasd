@@ -81,6 +81,7 @@ public class DoctorController {
 			Model model, SessionStatus status) {
 		try {
 			doctorService.update(doctor);
+			status.setComplete();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -88,6 +89,20 @@ public class DoctorController {
 		return "redirect:/doctor";
 	}
 	
+	@GetMapping("/info/{id}")
+	public String inspeccionarDoctor(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Doctor> optional = doctorService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("doctor",optional.get());	
+			} else {
+				model.addAttribute("error","doctor no encontrado");
+				return "redirect:/doctor";
+			}
+		} catch(Exception e) {System.out.println(e.getMessage());		
+		}
+		return "medico/info";
+	}
 	@GetMapping("/del/{id}")
 	public String eliminar(@PathVariable("id") int id, Model model) {
 		try {
