@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,15 +17,17 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.clinica.model.entity.Doctor;
 import com.clinica.model.entity.Especialidad;
+import com.clinica.model.repository.DoctorRepository;
 import com.clinica.service.DoctorService;
 import com.clinica.service.EspecialidadService;
 
+
 @Controller
 @RequestMapping("/doctor")
-@SessionAttributes({"medico","cita"})
 public class DoctorController {
 	@Autowired
 	private DoctorService doctorService;
+	
 	@Autowired
 	private EspecialidadService especialidadService;
 	
@@ -39,28 +42,18 @@ public class DoctorController {
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") int id, Model model) {
 		try {
-			Optional<Doctor> optional = doctorService.findById(id);
+			Optional<Doctor> optional = doctorService.findById(id);	
 			if(optional.isPresent()) {
+				model.addAttribute("doct", optional.get());
 				List <Especialidad> especialidades = especialidadService.findAll();
-				model.addAttribute("doctor",optional.get());
-				model.addAttribute("especialidades", especialidades);
+				model.addAttribute("especiales", especialidades);	
 			} else {
-				return "redirect:/medico";
+				return "redirect:/doctor";
 			}
-		}catch(Exception e) {}
+		}catch(Exception e) {System.out.println(e.getMessage());}
 		return "medico/edit";
 	}
 	
-	@PostMapping("/save")
-	public String save(@ModelAttribute("doctor") Doctor doctor,
-			Model model, SessionStatus status) {
-		try {
-			doctorService.save(doctor);
-			status.setComplete();
-		}catch(Exception e) {}
-		
-		return "redirect:/medico";
-	}
 	@GetMapping("/nuevo")
 	public String nuevo(Model model) {
 		Doctor doctor = new Doctor();
@@ -69,9 +62,33 @@ public class DoctorController {
 			List<Especialidad> especialidades = especialidadService.findAll();
 			model.addAttribute("especialidades", especialidades);
 		} catch(Exception e) {}
-		return "/medico/nuevo";
+		return "medico/nuevo";
 	}
 	
+	@PostMapping("/save")
+	public String save(@ModelAttribute("doctor") Doctor doctor,
+			Model model, SessionStatus status) {
+		try {
+			doctorService.save(doctor);
+			status.setComplete();
+		}catch(Exception e) {System.out.println(e.getMessage());}
+		
+		return "redirect:/doctor";
+	}
+	
+	@PostMapping("/save/{id}")
+	public String update(@ModelAttribute("doctor") Doctor doctor,
+			Model model, SessionStatus status) {
+		try {
+			doctorService.update(doctor);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return "redirect:/doctor";
+	}
+	
+	@GetMapping("/del/{id}")
 	public String eliminar(@PathVariable("id") int id, Model model) {
 		try {
 			Optional<Doctor> doctor = doctorService.findById(id);
@@ -84,9 +101,9 @@ public class DoctorController {
 				List<Doctor> doctores = doctorService.findAll();
 				model.addAttribute("doctores", doctores);
 			} catch(Exception e2) {}
-			return "/medico/inicio";
+			return "medico/inicio";
 		}
-		return "redirect:/medico";
+		return "redirect:/doctor";
 	}
 	
 }

@@ -36,13 +36,13 @@
 							<td th:text="${doctor.direccion}">@mdo</td>
 							<td th:text="${doctor.telefono}">@mdo</td>
 							<td>
-								<a th:href="@{ '/medico/info/' + ${doctor.id} }" class="btn btn-info"> 
+								<a th:href="@{ 'doctor/info/' + ${doctor.id} }" class="btn btn-info"> 
 									<i class="fas fa-info"></i> 
 								</a>
-								<a  th:href="@{ '/medico/edit/' + ${doctor.id} }" class="btn btn-warning"> 
+								<a  th:href="@{ 'doctor/edit/' + ${doctor.id} }" class="btn btn-warning"> 
 									<i class="fas fa-edit"></i> 
 								</a>
-								<a  th:href="@{ '/medico/del/' + ${doctor.id} }" class="btn btn-danger"> 
+								<a  th:href="@{ 'doctor/del/' + ${doctor.id} }" class="btn btn-danger"> 
 									<i class="fas fa-trash-alt"></i> 
 								</a>							
 							</td>
@@ -52,7 +52,7 @@
 
 			</div>
 			<div  class="card-footer text-muted">
-				<a th:href="@{/medico/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Medico</a>
+				<a th:href="@{doctor/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Medico</a>
 			</div>
 		</div>
 

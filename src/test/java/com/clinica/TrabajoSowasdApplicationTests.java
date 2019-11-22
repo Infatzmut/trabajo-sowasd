@@ -99,10 +99,13 @@ class TrabajoSowasdApplicationTests {
 			
 			Especialidad cirujano = new Especialidad();
 			cirujano.setDescripcion("Cirujano");
+			cirujano.addDoctor(luis);
 			Especialidad cardiologo = new Especialidad();
 			cardiologo.setDescripcion("Cardiologo");
+			cardiologo.addDoctor(lucia);
 			Especialidad ginecologo = new Especialidad();
 			ginecologo.setDescripcion("Ginecologo");
+			ginecologo.addDoctor(enrique);
 			
 			cirujano = especialidadRepository.save(cirujano);
 			cardiologo = especialidadRepository.save(cardiologo);
@@ -114,6 +117,9 @@ class TrabajoSowasdApplicationTests {
 			clinica1.setNombre("Clinica 1");
 			clinica1.setDireccion("jr independencia 338");
 			clinica1.setTelefono(845789);
+			clinica1.addDoctor(luis);
+			clinica1.addDoctor(lucia);
+			clinica1.addDoctor(enrique);
 			
 			clinica1 = clinicaRepository.save(clinica1);
 			
