@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Registro de nueva cita</h1>
+
+		<div class="card">
+			<div class="card-body">
+				<form th:action="@{'/paciente/save/' + ${paciente.id} + '/cita'}"
+					method="post">
+					
+					<div class="form-group">
+						<label for="nombre">Doctor:</label> 
+						<select class="form-control " th:field="${cita.doctor}" >
+							<option th:each="doctor:${doctores}" 
+							th:value ="${doctor.id}" th:text="${doctor.name}"></option>
+						</select>	
+					</div>
+					
+					<div class="form-group">
+						<label for="fecha">Fecha:</label> 
+						<input type="date" th:field="${cita.fecha}" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="paciente">Paciente</label> 
+						<select th:field="${cita.paciente}" disabled class="form-control">
+						<option th:value="${paciente.id}" th:text="${paciente.nombre}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="hora">Hora:</label> 
+						<input type="text" class="form-control"
+							placeholder="hora"
+							th:field ="${cita.hora}">
+					</div>
+					<div class="form-group">
+						<label for="tipoAtencion">Tipo atencion:</label> 
+						<select th:field="${cita.tipoAtencion}" class="form-control">
+						<option th:each="atencion:${tiposAtencion}"
+						th:value="${atencion.id}" th:text="${atencion.descripcion}"></option>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/paciente}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

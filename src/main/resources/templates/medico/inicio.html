@@ -6,9 +6,6 @@
 	<header th:replace="layout/layout :: header"></header>
 
 	<div class="container">
-
-		<h1>Lista de medico</h1>
-
 		<div class="card text-center">
 			<div class="card-header">Lista de medicos</div>
 			<div class="card-body">
@@ -22,8 +19,8 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Nombre</th>
-							<!-- <th scope="col">Especialidad</th> -->
-							<th scope="col">Direcci�n</th>
+							<th scope="col">Especialidad</th> 
+							<th scope="col">Dirección</th>
 							<th scope="col">telefono</th>
 							<th scope="col"></th>
 						</tr>
@@ -32,7 +29,7 @@
 						<tr>
 							<th scope="row" th:text="${doctor.id}">1</th>
 							<td th:text="${doctor.name}">Mark</td>
-							<!-- <td th:text="${doctor.especialidad.descripcion}">Otto</td> -->
+							<td th:text="${doctor.especialidad.descripcion}">Otto</td> 
 							<td th:text="${doctor.direccion}">@mdo</td>
 							<td th:text="${doctor.telefono}">@mdo</td>
 							<td>

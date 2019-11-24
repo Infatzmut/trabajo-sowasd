@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace=" layout/layout :: header"></header>
+	<div class="container">
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Genero</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody th:each="paciente : ${pacientes}">
+				<tr>
+					<td th:text="${paciente.id}">Mark</td>
+					<td th:text="${paciente.nombre}">Otto</td>
+					<td th:text="${paciente.genero}">@mdo</td>
+					<td><a th:href="@{ 'paciente/info/' + ${paciente.id} }"
+						class="btn btn-info"> <i class="fas fa-info"></i>
+					</a> <a th:href="@{ 'paciente/edit/' + ${paciente.id} }"
+						class="btn btn-warning"> <i class="fas fa-edit"></i>
+					</a> <a th:href="@{ 'paciente/del/' + ${paciente.id} }"
+						class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
+					</a></td>
+				</tr>
+			</tbody>
+			<footer th:replace="layout/layout :: footer"></footer>
+		</table>
+	</div>
+</body>
+</html>

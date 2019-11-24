@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<td scope="col">id</td>
+					<td scope="col">fecha</td>
+					<td scope="col">hora</td>
+					<td scope="col">doctor</td>
+					<td scope="col">paciente</td>
+					<td scope="col">tipo de Atención</td>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each ="cita : ${citas}">
+					<td th:text="${cita.id}">a</td>
+					<td th:text="${cita.fecha}">a</td>
+					<td th:text="${cita.hora}">a</td>
+					<td th:text="${cita.doctor.name}">a</td>
+					<td th:text="${cita.paciente.nombre}">a</td>
+					<td th:text="${cita.tipoAtencion.descripcion}">a</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<footer th:replace = "layout/layout :: footer"></footer>	
+</body>
+</html>

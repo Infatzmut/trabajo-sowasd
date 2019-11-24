@@ -58,4 +58,10 @@ public class CitaServiceImpl implements CitaService{
 		citaRepository.deleteAll();
 	}
 
+	@Override
+	public List<Cita> findByPacienteId(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

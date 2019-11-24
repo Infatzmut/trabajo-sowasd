@@ -26,7 +26,7 @@ public class Paciente {
 	private String nombre;
 	
 	@Column
-	private Date nacimiento;
+	private String nacimiento;
 	
 	@Column(length = 10)
 	private Integer telefono;
@@ -87,11 +87,11 @@ public class Paciente {
 		this.nombre = nombre;
 	}
 
-	public Date getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 

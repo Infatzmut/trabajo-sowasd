@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="card container-fluid">
+		<div class="card-header">Nuevo Paciente</div>
+		<div class="card-body ">
+
+			<form th:action="@{/paciente/save}" method="post" th:object="${paciente}">
+				<div class="form-group">
+					<label for="nombre">Nombres</label> <input type="text"
+						th:field = *{nombre}
+						class="form-control" id="nombre" placeholder="nombre">
+				</div>
+				<div class="form-group">
+					<label for="genero">Genero</label> <input type="text"
+						th:field = *{genero}
+						class="form-control" id="genero" placeholder="Password">
+				</div>
+
+				<div class="form-group">
+					<label for="nacimiento">Nacimiento</label> <input type="date"
+						th:field= *{nacimiento}
+						class="form-control" id="nacimiento" placeholder="Enter email">
+				</div>
+				<div class="form-group">
+					<label for="telefono">Telefono</label> <input type="number"
+						th:field = *{telefono} 
+						class="form-control" id="telefono" placeholder="telefono">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

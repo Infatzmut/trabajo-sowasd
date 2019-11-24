@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clinica.model.entity.Usuario;
-import com.clinica.model.repository.UsuarioRepository;
 import com.clinica.service.UsuarioService;
 
 @Controller
@@ -19,7 +18,7 @@ import com.clinica.service.UsuarioService;
 public class IndexController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UsuarioService usuarioService;
 	
 	@GetMapping
 	public String index() {
@@ -37,7 +36,7 @@ public class IndexController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 			Optional<Usuario> optional 
-				= usuarioRepository.findByUsername(username);
+				= usuarioService.findByUsername(username);
 			if(optional.isPresent()) {
 				model.addAttribute("usuario", optional.get());
 			}

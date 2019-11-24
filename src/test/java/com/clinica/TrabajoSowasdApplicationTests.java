@@ -47,25 +47,25 @@ class TrabajoSowasdApplicationTests {
 			juan.setNombre("Juan Perez");
 			juan.setGenero("Masculino");
 			juan.setTelefono(987887443);
-			juan.setNacimiento(new Date(1994, 4, 5));
+			juan.setNacimiento("08-20-1994");
 			
 			Paciente carlos = new Paciente();
 			carlos.setNombre("Carlos Sanchez");
 			carlos.setGenero("Masculino");
 			carlos.setTelefono(547889665);
-			carlos.setNacimiento(new Date(1890, 6, 4));
+			carlos.setNacimiento("10-05-1996");
 			
 			Paciente pedro = new Paciente();
 			pedro.setNombre("Pedro Gutierrez");
 			pedro.setGenero("Masculino");
 			pedro.setTelefono(987887447);
-			pedro.setNacimiento(new Date(1994, 4, 5));
+			pedro.setNacimiento("04-05-1994");
 			
 			Paciente ximena = new Paciente();
 			ximena.setNombre("Ximena Marlith");
 			ximena.setGenero("Femenino");
 			ximena.setTelefono(897456123);
-			ximena.setNacimiento(new Date(1994, 10, 8));
+			ximena.setNacimiento("01-30-1990");
 			
 			juan = pacienteRepository.save(juan);
 			carlos = pacienteRepository.save(carlos);
@@ -125,7 +125,7 @@ class TrabajoSowasdApplicationTests {
 			
 			// Cita
 			
-			Cita cita1 = new Cita();
+			/*Cita cita1 = new Cita();
 			cita1.setHora("11 am");
 			cita1.setFecha(new Date(2019, 6, 8));
 			Cita cita2 = new Cita();
@@ -133,7 +133,7 @@ class TrabajoSowasdApplicationTests {
 			cita2.setFecha(new Date(2020, 1, 5));
 			
 			cita1 = citaRepository.save(cita1);
-			cita2 = citaRepository.save(cita2);
+			cita2 = citaRepository.save(cita2);*/
 			
 			//Proveedores 
 			
@@ -157,8 +157,8 @@ class TrabajoSowasdApplicationTests {
 			especialidadRepository.save(cardiologo);
 			especialidadRepository.save(ginecologo);
 			clinicaRepository.save(clinica1);
-			citaRepository.save(cita1);
-			citaRepository.save(cita2);
+			//citaRepository.save(cita1);
+			//citaRepository.save(cita2);
 			proveedorRepository.save(prov1);
 			
 		}catch(Exception e) {
