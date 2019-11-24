@@ -112,29 +112,41 @@ public class PacienteController {
 	}
 	
 	// Try to save a cita from paciente inspect
-		@GetMapping("/info/{id}/cita")
-		public String añadirCita(@PathVariable("id") int id, Model model) {
-			Cita cita = new Cita();
-			model.addAttribute("cita",cita);
-			try {
-				Optional<Paciente> paciente = pacienteService.findById(id);
-				model.addAttribute("paciente",paciente.get());
-				List<TipoAtencion> tiposAtencion = tipoAtencionService.findAll();
-				model.addAttribute("tiposAtencion", tiposAtencion);
-				List<Doctor> doctores = doctorService.findAll();
-				model.addAttribute("doctores", doctores);
-			} catch(Exception e) {System.out.println(e.getMessage());}
-			return "paciente/cita";
+	@GetMapping("/info/{id}/cita")
+	public String añadirCita(@PathVariable("id") int id, Model model) {
+		Cita cita = new Cita();
+		model.addAttribute("cita",cita);
+		try {
+			Optional<Paciente> paciente = pacienteService.findById(id);
+			model.addAttribute("paciente",paciente.get());
+			List<TipoAtencion> tiposAtencion = tipoAtencionService.findAll();
+			model.addAttribute("tiposAtencion", tiposAtencion);
+			List<Doctor> doctores = doctorService.findAll();
+			model.addAttribute("doctores", doctores);
+		} catch(Exception e) {System.out.println(e.getMessage());}
+		return "paciente/cita";
 		}
 		
-		@PostMapping("/save/{id}/cita")
-		public String saveCita(@PathVariable("id") int id,@ModelAttribute("cita") Cita cita,
-				@ModelAttribute("paciente") Paciente paciente, Model model) {
-			try {
-				cita.setPaciente(paciente);
-				citaService.save(cita);
-			}catch(Exception e) {System.out.println(e.getMessage());}
-			return "redirect:/paciente/info/"+id;
+	@PostMapping("/save/{id}/cita")
+	public String saveCita(@PathVariable("id") int id,@ModelAttribute("cita") Cita cita,
+		@ModelAttribute("paciente") Paciente paciente, Model model) {
+		try {
+			cita.setPaciente(paciente);
+			citaService.save(cita);
+		}catch(Exception e) {System.out.println(e.getMessage());}
+		return "redirect:/paciente/info/"+id+"/citas";
 		}
 	
+	@GetMapping("/info/{id}/citas")
+	public String verCitas(@PathVariable("id") int id,Model model) {
+		try {
+			Optional<Paciente> paciente = pacienteService.findById(id);
+			if(paciente.isPresent()) {
+				model.addAttribute("paciente",paciente.get());
+				List<Cita> citas = citaService.findByPacienteCitas(id);
+				model.addAttribute("citas",citas);
+			}
+		}catch(Exception e) {System.out.println(e.getMessage());}
+		return "paciente/citas";
+	}
 }

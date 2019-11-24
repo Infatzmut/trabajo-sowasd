@@ -3,6 +3,7 @@ package com.clinica.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import com.clinica.service.UsuarioService;
 
 @Controller
 @RequestMapping("/")
-public class IndexController {
+public class IndexController implements ErrorController{
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -42,5 +43,16 @@ public class IndexController {
 			}
 			
 		return "verid";
+	}
+	
+	@GetMapping("error")
+	public String onError() {
+		return "error";
+	}
+
+	@Override
+	public String getErrorPath() {
+		// TODO Auto-generated method stub
+		return "/error";
 	}
 }

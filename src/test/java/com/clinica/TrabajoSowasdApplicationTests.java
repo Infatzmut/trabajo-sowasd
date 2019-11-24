@@ -11,12 +11,14 @@ import com.clinica.model.entity.Clinica;
 import com.clinica.model.entity.Doctor;
 import com.clinica.model.entity.Paciente;
 import com.clinica.model.entity.Proveedor;
+import com.clinica.model.entity.TipoAtencion;
 import com.clinica.model.repository.CitaRepository;
 import com.clinica.model.repository.ClinicaRepository;
 import com.clinica.model.repository.DoctorRepository;
 import com.clinica.model.repository.EspecialidadRepository;
 import com.clinica.model.repository.PacienteRepository;
 import com.clinica.model.repository.ProveedorRepository;
+import com.clinica.model.repository.TipoAtencionRepository;
 import com.clinica.model.entity.Especialidad;
 
 @SpringBootTest
@@ -39,6 +41,9 @@ class TrabajoSowasdApplicationTests {
 	
 	@Autowired
 	ProveedorRepository proveedorRepository;
+	
+	@Autowired
+	TipoAtencionRepository tipoAtencionRepository;
 	@Test
 	void contextLoads() {
 		try {
@@ -95,6 +100,18 @@ class TrabajoSowasdApplicationTests {
 			luis = doctorRepository.save(luis);
 			lucia = doctorRepository.save(lucia);
 			
+			// Tipo Atencion
+			
+			TipoAtencion consulta = new TipoAtencion();
+			consulta.setDescripcion("consulta");
+			TipoAtencion emergencia = new TipoAtencion();
+			emergencia.setDescripcion("emergencia");
+			TipoAtencion resultado = new TipoAtencion();
+			resultado.setDescripcion("resultados");
+			
+			consulta = tipoAtencionRepository.save(consulta);
+			emergencia = tipoAtencionRepository.save(emergencia);
+			resultado = tipoAtencionRepository.save(resultado);
 			// Especialidad 
 			
 			Especialidad cirujano = new Especialidad();
@@ -123,17 +140,23 @@ class TrabajoSowasdApplicationTests {
 			
 			clinica1 = clinicaRepository.save(clinica1);
 			
+			
 			// Cita
 			
-			/*Cita cita1 = new Cita();
+			Cita cita1 = new Cita();
 			cita1.setHora("11 am");
-			cita1.setFecha(new Date(2019, 6, 8));
+			cita1.setFecha("2019-6-8");
+			cita1.setDoctor(enrique);
+			cita1.setPaciente(ximena);
+			cita1.setTipoAtencion(consulta);
 			Cita cita2 = new Cita();
 			cita2.setHora("1 pm");
-			cita2.setFecha(new Date(2020, 1, 5));
-			
+			cita2.setFecha("2020-1-5");
+			cita2.setDoctor(luis);
+			cita2.setPaciente(pedro);
+			cita2.setTipoAtencion(emergencia);
 			cita1 = citaRepository.save(cita1);
-			cita2 = citaRepository.save(cita2);*/
+			cita2 = citaRepository.save(cita2);
 			
 			//Proveedores 
 			
@@ -157,8 +180,11 @@ class TrabajoSowasdApplicationTests {
 			especialidadRepository.save(cardiologo);
 			especialidadRepository.save(ginecologo);
 			clinicaRepository.save(clinica1);
-			//citaRepository.save(cita1);
-			//citaRepository.save(cita2);
+			tipoAtencionRepository.save(consulta);
+			tipoAtencionRepository.save(emergencia);
+			tipoAtencionRepository.save(resultado);
+			citaRepository.save(cita1);
+			citaRepository.save(cita2);
 			proveedorRepository.save(prov1);
 			
 		}catch(Exception e) {

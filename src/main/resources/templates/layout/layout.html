@@ -4,8 +4,8 @@
 <head th:fragmen="head">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Human Resource Project">
-	<meta name="author" content="Juan Flores-Moroco">
+	<meta name="description" content="Clinica Cita service">
+	<meta name="author" content="Fabrizzio Aranda">
 	
 	<title>Hospital</title>
 	
@@ -35,20 +35,25 @@
 					<li  class="nav-item"><a class="nav-link" th:href="@{/cita/nuevo}">
 						<i class="fas fa-home"></i> Solicitar cita
 					</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMIN')"class="nav-item"><a class="nav-link" th:href="@{/cita}">
-						<i class="fas fa-home"></i> Gestionar cita
+					<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" 
+					th:href="@{/cita}">
+						<i class="fas fa-home"></i> Ver cita
 					</a></li>
-					<li  class="nav-item"><a class="nav-link" th:href="@{/}">
+					<li  class="nav-item"><a class="nav-link" th:href="@{/verid}">
 						<i class="fas fa-home"></i> Usuario
 					</a></li>
-					<li  class="nav-item">
+					<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USUARIO')" class="nav-item"><a class="nav-link" 
+					th:href="@{/paciente}">
+						<i class="fas fa-home"></i> Paciente
+					</a></li>
+					<li  sec:authorize="isAnonymous()" class="nav-item">
 						<a class="nav-link" th:href="@{/usuario/register}">
 						<i class="fas fa-user-circle"></i> Register
 					</a></li>
-					<li  class="nav-item"><a class="nav-link" th:href="@{/login}">
+					<li  sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link" th:href="@{/login}">
 						<i class="fas fa-user-circle"></i> Sign In
 					</a></li>
-					<li  class="nav-item">
+					<li sec:authorize="isAuthenticated()" class="nav-item">
 						<a class="nav-link" th:href="@{/logout}">
 						<i class="fas fa-sign-out-alt"></i> Sign Out
 					</a></li>

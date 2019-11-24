@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head"></head>
 <body>
 	<header th:replace="layout/layout :: header"></header>
@@ -15,9 +16,6 @@
 				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
   					<span th:text="${dangerDel}"></span>
 				</div>
-			
-			
-				<form>
 				  <div class="form-group row">
 				    <label for="nombre" class="col-sm-2 col-form-label">Nombre :</label>
 				    <div class="col-sm-10">
@@ -49,30 +47,14 @@
 				      <input type="text" readonly th:value="${doctor.telefono}" class="form-control-plaintext" >
 				    </div>
 				  </div>
-				</form>
-				<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Cita id</th>
-						<th scope="col">Paciente</th>
-						<th scope="col">Hora</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Juan</td>
-						<td>1 pm</td>
-					</tr>
-				</tbody>
-			</table>
 			</div>
 			
 			<div class="card-footer text-muted">
-				<a th:href="@{/doctor}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Doctores</a>
 				<a th:href="@{'/doctor/info/' + ${doctor.id} + '/cita/'}" 
 					class="btn btn-primary">
 					<i class="fas fa-file-alt"></i> Nueva cita</a>
+				<a th:href="@{'/doctor/info/' + ${doctor.id} +'/citas' }" 
+				class="btn btn-success"><i class="fas fa-file-alt"></i> Ver citas</a>	
 			</div>
 		</div>
 

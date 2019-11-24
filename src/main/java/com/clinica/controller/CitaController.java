@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.clinica.model.entity.Cita;
 import com.clinica.model.entity.Doctor;
 import com.clinica.model.entity.Paciente;
+import com.clinica.model.entity.TipoAtencion;
 import com.clinica.service.CitaService;
 import com.clinica.service.DoctorService;
 import com.clinica.service.PacienteService;
+import com.clinica.service.TipoAtencionService;
 
 @Controller
 @RequestMapping("/cita")
@@ -27,9 +29,13 @@ public class CitaController {
 	@Autowired
 	private PacienteService pacienteService;
 	
-	@Autowired CitaService citaService;
+	@Autowired 
+	private CitaService citaService;
 	
-	@GetMapping("/")
+	@Autowired
+	private TipoAtencionService tipoAtencionService;
+	
+	@GetMapping()
 	public String index(Model model) {
 		try {
 			List<Cita> citas = citaService.findAll();
@@ -46,6 +52,8 @@ public class CitaController {
 		model.addAttribute("doctores", doctores);
 		List<Paciente> pacientes = pacienteService.findAll();
 		model.addAttribute("pacientes", pacientes);
+		List<TipoAtencion> tiposAtencion = tipoAtencionService.findAll();
+		model.addAttribute("tiposAtencion", tiposAtencion);
 		} catch(Exception e) {System.out.println(e.getMessage());}
 		return "cita/nueva";
 	}

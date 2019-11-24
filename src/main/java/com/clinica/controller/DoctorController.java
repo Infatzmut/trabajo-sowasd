@@ -164,4 +164,17 @@ public class DoctorController {
 		return "redirect:/doctor";
 	}
 	
+	@GetMapping("/info/{id}/citas")
+	public String verCitas(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Doctor> doctor = doctorService.findById(id);
+			if(doctor.isPresent()) {
+				model.addAttribute("doctor",doctor.get());
+				List<Cita> citas = citaService.findByDoctorCitas(id);
+				model.addAttribute("citas",citas);
+			} 
+		} catch(Exception e) {System.out.println(e.getMessage());}
+		return "medico/citasMedico";
+	}
+	
 }

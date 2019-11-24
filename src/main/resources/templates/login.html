@@ -18,7 +18,7 @@
 
 	<div class="container text-center">
 		<form th:action="@{/signin}" class="form-signin" method="post">
-			<img class="mb-4" th:src="@{/images/logo-codeorg.png}" alt="logo" >
+			<img height="200px" th:src="@{/img/logo.png}" alt="logo" >
 			<h1 class="h3 mb-3 font-weight-normal"><i class="fas fa-user-circle"></i> Sign In</h1>
 
 			<div th:if="${param.error}" class="alert alert-danger">
@@ -49,7 +49,8 @@
 				</label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
-			<p class="mt-5 mb-3 text-muted">João Coder&copy; 2019</p>
+			<a class="btn btn-lg btn-secondary btn-block" 
+			href="javascript:window.history.back()" ><i class="fas fa-ban"></i> Cancel</a>
 		</form>
 	</div>
 

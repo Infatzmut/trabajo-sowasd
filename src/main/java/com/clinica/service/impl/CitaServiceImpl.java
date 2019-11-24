@@ -59,9 +59,17 @@ public class CitaServiceImpl implements CitaService{
 	}
 
 	@Override
-	public List<Cita> findByPacienteId(int id) throws Exception {
+	public List<Cita> findByPacienteCitas(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return citaRepository.findByPacienteCitas(id);
 	}
+
+	@Override
+	public List<Cita> findByDoctorCitas(Integer id) {
+		// TODO Auto-generated method stub
+		return citaRepository.findByDoctorCitas(id);
+	}
+
+	
 
 }

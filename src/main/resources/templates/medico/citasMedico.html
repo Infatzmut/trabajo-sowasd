@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+	<h1 th:text="'Listado de citas de '+ ${doctor.name}"
+		class = "text-center">a</h1>
+	<a class="btn btn-primary" style="float:right"
+	href="javascript:window.history.back()"><i class="fas fa-arrow-circle-left"></i></a>
+	<div class="card">
+	<div class="card-body">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Paciente</th>
+				<th>Hora</th>
+				<th>Fecha</th>
+			</tr>
+		</thead>
+		<tbody th:each="cita: ${citas}">
+			<tr>
+				<td th:text="${cita.id}">citas works</td>
+				<td th:text="${cita.paciente.nombre}">citas works</td>
+				<td th:text="${cita.hora}">citas works</td>
+				<td th:text="${cita.fecha}">citas works</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

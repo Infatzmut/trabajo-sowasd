@@ -40,9 +40,10 @@ public class UsuarioController {
 				model.addAttribute("error","El username"+ usuario.getUsername()+" ya se encuentra en uso");
 				return "register";
 			} else {
+				usuario.setUsername(usuario.getUsername());
 				usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 				usuario.setCargo("paciente");
-				usuario.addAuthority("ROLE_PACIENTE");
+				usuario.addAuthority("USER");
 				usuario.setEnable(true);
 				usuarioService.save(usuario);
 			}

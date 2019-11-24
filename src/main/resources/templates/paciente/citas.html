@@ -4,9 +4,10 @@
 <head th:replace="layout/layout :: head"></head>
 <body>
 	<header th:replace="layout/layout :: header"></header>
-
 	<div class="container">
-		<h1 class="text-center">Lista de citas actuales</h1>
+		<h1 class="text-center">
+			Listado de citas de <span th:text="${paciente.nombre}">a</span>
+		</h1>
 		<a class="btn btn-primary" href="javascript:window.history.back()"
 			style="float: right"><i class="fas fa-arrow-circle-left"></i></a>
 		<div class="card text-center">
@@ -14,28 +15,18 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">Id
-							</td>
-							<th scope="col">Fecha
-							</td>
-							<th scope="col">Hora
-							</td>
-							<th scope="col">Doctor
-							</td>
-							<th scope="col">Paciente
-							</td>
-							<th scope="col">Tipo de Atención
-							</td>
+							<th>Id</th>
+							<th>Doctor</th>
+							<th>Hora</th>
+							<th>Fecha</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr th:each="cita : ${citas}">
-							<td th:text="${cita.id}">a</td>
-							<td th:text="${cita.fecha}">a</td>
-							<td th:text="${cita.hora}">a</td>
-							<td th:text="${cita.doctor.name}">a</td>
-							<td th:text="${cita.paciente.nombre}">a</td>
-							<td th:text="${cita.tipoAtencion.descripcion}">a</td>
+					<tbody th:each="cita: ${citas}">
+						<tr>
+							<td th:text="${cita.id}">citas works</td>
+							<td th:text="${cita.doctor.name}">citas works</td>
+							<td th:text="${cita.hora}">citas works</td>
+							<td th:text="${cita.fecha}">citas works</td>
 						</tr>
 					</tbody>
 				</table>

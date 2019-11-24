@@ -11,3 +11,5 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MYSQL5Dialect
     show-sql: true
+
+  
