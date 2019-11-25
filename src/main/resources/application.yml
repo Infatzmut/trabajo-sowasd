@@ -1,15 +1,15 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sowasd
-    username: root
-    password: toor
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databasename=sowasd
+    username: sa
+    password: 12345678
   jpa:
-    database: mysql
+    database: sql-server
     hibernate:
       ddl-auto: update
-    properties:
-      dialect: org.hibernate.dialect.MYSQL5Dialect
-    show-sql: true
-
+    show-sql: false
+  
+server:
+  port: 8081
   
