@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace=" layout/layout :: header"></header>
+	<div class="container">
+		<h1 class="text-center">Lista de Usuarios</h1>
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead >
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombres</th>
+							<th scope="col">Apellidos</th>
+							<th scope="col">Username</th>
+							<th scope="col">Cargo</th>
+							<th scope="col">Actions</th>
+						</tr>
+					</thead>
+					<tbody th:each="usuario : ${usuarios}">
+						<tr>
+							<td th:text="${usuario.id}">Mark</td>
+							<td th:text="${usuario.nombres}">Otto</td>
+							<td th:text="${usuario.apellidos}">@mdo</td>
+							<td th:text="${usuario.username}">aa</td>
+							<td th:text="${usuario.cargo}">aa</td>
+							  <td><a th:href="@{ 'delete/' + ${usuario.id} }"
+								class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
+							</a> <!--<a th:href="@{ 'paciente/edit/' + ${paciente.id} }"
+								class="btn btn-warning"> <i class="fas fa-edit"></i>
+							</a> <a th:href="@{ 'paciente/del/' + ${paciente.id} }"
+								class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
+							</a></td> -->
+						</tr>
+					</tbody>
+					<footer th:replace="layout/layout :: footer"></footer>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
